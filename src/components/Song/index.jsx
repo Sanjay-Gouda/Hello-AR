@@ -1,15 +1,12 @@
-// import Breadcrumb from "../shared/Breadcrumb/breadcrumb";
 import { useContext, useState } from "react";
 import Breadcrumb from "../shared/Breadcrumb/breadcrumb";
 import { SongModal } from "../shared/Modal/modal";
-// import { SongModal } from "../shared/Modal/modal";
 import { Sidebar } from "../shared/Sidebar/sidebar";
 import { Table } from "../shared/Table/table";
 
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import { SongList } from "../../context/context";
-
 const Song = () => {
   const [open, setOpen] = useState(false);
   const { currentSong } = useContext(SongList);
@@ -45,14 +42,26 @@ const Song = () => {
             <SongModal open={open} handleOpen={handleOpen} />
           </div>
 
-          <AudioPlayer
-            autoPlay={false}
-            // src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3"
-            src={currentSong}
-            controls
-            // onPlay={(e) => {}}
-            className="audio-player"
-          />
+          <div className="flex w-full flex-col gap-1">
+            {currentSong?.imgURL && (
+              <div className="flex w-full justify-start items-center gap-2">
+                <div className="w-[72px] h-[72px] overflow-hidden">
+                  <img
+                    className="w-full h-full object-contain"
+                    src={currentSong?.imgURL}
+                  />
+                </div>
+                <p>{currentSong?.name}</p>
+              </div>
+            )}
+
+            <AudioPlayer
+              autoPlay={false}
+              src={currentSong?.src}
+              controls
+              className="audio-player"
+            />
+          </div>
         </div>
       </div>
     </>

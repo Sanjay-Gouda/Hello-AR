@@ -4,11 +4,21 @@ import { MdOutlineDelete } from "react-icons/md";
 import { SongList } from "../../../context/context";
 
 export const Table = () => {
-  const { list, setCurrentSong } = useContext(SongList);
+  const { list, setList, setCurrentSong } = useContext(SongList);
 
-  const handlePlaySong = (src) => {
+  const handlePlaySong = (src, name, url) => {
     console.log(src);
-    setCurrentSong(src);
+    setCurrentSong({
+      src: src,
+      name: name,
+      imgURL: url,
+    });
+  };
+
+  const handleRemove = (id) => {
+    const restSongs = list?.filter((list) => list.id !== id);
+    console.log(restSongs);
+    setList(restSongs);
   };
 
   return (
@@ -67,7 +77,11 @@ export const Table = () => {
                           <button
                             type="button"
                             onClick={() =>
-                              handlePlaySong(list?.formValues?.link)
+                              handlePlaySong(
+                                list?.formValues?.link,
+                                list?.formValues?.name,
+                                list?.thumbnail?.url
+                              )
                             }
                             className="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none "
                           >
@@ -75,6 +89,7 @@ export const Table = () => {
                           </button>
                           <button
                             type="button"
+                            onClick={() => handleRemove(list.id)}
                             className="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none "
                           >
                             <MdOutlineDelete size="30" color="gray" />

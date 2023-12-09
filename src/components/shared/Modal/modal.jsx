@@ -9,9 +9,11 @@ import { LightButton } from "../Button/lightButton";
 import { DefaultButton } from "../Button/defaultButton";
 import { MdOutlineDelete } from "react-icons/md";
 import { SongList } from "../../../context/context";
+import { useRandomID } from "../../../hooks/useRandomId";
 
 export const SongModal = ({ open, handleOpen }) => {
   const [formValues, setFormValues] = useState({});
+  const id = useRandomID();
   const [thumbnail, setThumbnail] = useState({
     url: "",
     name: "",
@@ -48,7 +50,8 @@ export const SongModal = ({ open, handleOpen }) => {
       let year = date.getFullYear();
 
       let currentDate = `${day}-${month}-${year}`;
-      const newList = { formValues, thumbnail, currentDate };
+      const newList = { id, formValues, thumbnail, currentDate };
+      console.log(newList);
       setList((prev) => [...prev, newList]);
       handleOpen();
       clearField();

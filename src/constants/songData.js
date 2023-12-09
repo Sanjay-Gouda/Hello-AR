@@ -7,6 +7,7 @@ let currentDate = `${day}-${month}-${year}`;
 
 export const Songs = [
   {
+    id: 1,
     formValues: {
       name: "Stop Giving Me Advice",
       source: "Youtube",
@@ -20,6 +21,7 @@ export const Songs = [
     currentDate: currentDate,
   },
   {
+    id: 2,
     formValues: {
       name: "Stop Giving Me Advice",
       source: "Youtube",
