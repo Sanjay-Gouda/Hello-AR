@@ -1,0 +1,20 @@
+#root {
+  width: 100%;
+  /* max-width: 1440px;
+  margin: 0 auto;
+  padding: 2rem; */
+  text-align: center;
+}
+
+h1,p{
+  margin: 0;
+
+}
+
+
+
+input[type="password"]{
+width:52px !important;
+height: 52px !important;
+}
+
